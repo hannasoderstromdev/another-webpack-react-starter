@@ -3,9 +3,10 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
+    'plugin:jsx-a11y/recommended',
     'plugin:prettier/recommended',
   ],
-  plugins: ['react', 'prettier'],
+  plugins: ['react', 'jsx-a11y', 'prettier'],
   env: {
     browser: true,
     node: true,
