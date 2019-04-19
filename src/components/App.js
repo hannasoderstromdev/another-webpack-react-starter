@@ -6,6 +6,8 @@ import { store } from 'helpers/store'
 import Root from './Root'
 import Routes from './Routes'
 
+import './Normalize.css'
+
 const App = () => (
   <Root store={store}>
     <Router>
