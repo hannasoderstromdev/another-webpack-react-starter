@@ -6,7 +6,6 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin
 const autoprefixer = require('autoprefixer')
 
-
 module.exports = env => {
   const isDevelopment = env.mode === 'development'
   const isProduction = env.mode === 'production'
@@ -16,8 +15,10 @@ module.exports = env => {
     options: {
       modules: true,
       sourceMap: true,
-      localIdentName: isProduction ? '[hash:base64:5]' : '[local]__[hash:base64:5]',
-    }
+      localIdentName: isProduction
+        ? '[hash:base64:5]'
+        : '[local]__[hash:base64:5]',
+    },
   }
 
   const CSSLoader = {
@@ -25,7 +26,7 @@ module.exports = env => {
     options: {
       modules: false,
       sourceMap: true,
-    }
+    },
   }
 
   const postCSSLoader = {
@@ -35,10 +36,10 @@ module.exports = env => {
       sourceMap: true,
       plugins: () => [
         autoprefixer({
-          browsers: ['>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9']
-        })
-      ]
-    }
+          browsers: ['>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9'],
+        }),
+      ],
+    },
   }
 
   return {
@@ -149,16 +150,11 @@ module.exports = env => {
         {
           test: /\.scss$/,
           exclude: /\.module\.scss$/,
-          use: ['style-loader', CSSLoader, postCSSLoader, 'sass-loader']
+          use: ['style-loader', CSSLoader, postCSSLoader, 'sass-loader'],
         },
         {
           test: /\.module\.scss$/,
-          use: [
-            'style-loader',
-            CSSModuleLoader,
-            postCSSLoader,
-            'sass-loader',
-          ],
+          use: ['style-loader', CSSModuleLoader, postCSSLoader, 'sass-loader'],
         },
         {
           test: /\.css$/,
@@ -178,12 +174,12 @@ module.exports = env => {
                       'not ie < 9',
                     ],
                     flexbox: 'no-2009',
-                  })
-                ]
-              }
-            }
-          ]
-        }
+                  }),
+                ],
+              },
+            },
+          ],
+        },
         // {
         //   test: /\.(png|svg|jpg|gif)$/,
         //   exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
@@ -224,6 +220,6 @@ module.exports = env => {
     ],
     performance: {
       hints: isProduction,
-    }
+    },
   }
 }
