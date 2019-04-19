@@ -17,9 +17,7 @@ const PrivateRoute = ({
       <Route
         {...rest}
         render={props => (
-          <Redirect
-            to={{ pathname: '/login', state: { from: props.location } }}
-          />
+          <Redirect to={{ pathname: '/', state: { from: props.location } }} />
         )}
       />
     )
@@ -32,9 +30,7 @@ const PrivateRoute = ({
         localStorage.getItem('user') ? (
           <Component {...props} />
         ) : (
-          <Redirect
-            to={{ pathname: '/login', state: { from: props.location } }}
-          />
+          <Redirect to={{ pathname: '/', state: { from: props.location } }} />
         )
       }
     />
