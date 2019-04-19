@@ -12,19 +12,33 @@ const Navigation = () => (
   <nav className={styles.nav} data-testid="main-navigation">
     <ul>
       <li>
-        <NavLink exact isActive={isActive.bind(this, '/')} to="/">
+        <NavLink
+          activeClassName={styles.active}
+          exact
+          isActive={isActive.bind(this, '/')}
+          to="/"
+        >
           <span>Home</span>
           <Icon icon={['fas', 'list']} iconsize="1.8rem" />
         </NavLink>
       </li>
       <li>
-        <NavLink isActive={isActive.bind(this, '/private')} to="/private">
+        <NavLink
+          activeClassName={styles.active}
+          isActive={isActive.bind(this, '/private')}
+          to="/private"
+        >
           <span>Private</span>
           <Icon icon={['fas', 'plus-circle']} iconsize="1.8rem" />
         </NavLink>
       </li>
       <li>
-        <NavLink to="/settings">
+        <NavLink
+          activeClassName={styles.active}
+          isActive={isActive.bind(this, '/private')}
+          to="/settings"
+        >
+          <span>Settings</span>
           <Icon icon={['fas', 'cog']} iconsize="1.8rem" />
         </NavLink>
       </li>
