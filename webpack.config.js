@@ -4,10 +4,42 @@ const webpack = require('webpack')
 const TerserPlugin = require('terser-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin
+const autoprefixer = require('autoprefixer')
+
 
 module.exports = env => {
   const isDevelopment = env.mode === 'development'
   const isProduction = env.mode === 'production'
+
+  const CSSModuleLoader = {
+    loader: 'css-loader',
+    options: {
+      modules: true,
+      sourceMap: true,
+      localIdentName: isProduction ? '[hash:base64:5]' : '[local]__[hash:base64:5]',
+    }
+  }
+
+  const CSSLoader = {
+    loader: 'css-loader',
+    options: {
+      modules: false,
+      sourceMap: true,
+    }
+  }
+
+  const postCSSLoader = {
+    loader: 'postcss-loader',
+    options: {
+      ident: 'postcss',
+      sourceMap: true,
+      plugins: () => [
+        autoprefixer({
+          browsers: ['>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9']
+        })
+      ]
+    }
+  }
 
   return {
     devServer: {
@@ -17,9 +49,10 @@ module.exports = env => {
       hot: isDevelopment,
     },
     devtool: isDevelopment ? 'inline-source-map' : false,
-    entry: {
-      app: path.resolve(__dirname, 'src/index.js'),
-    },
+    entry: [
+      path.resolve(__dirname, './polyfills'),
+      path.resolve(__dirname, 'src/index.js'),
+    ],
     output: {
       path: isProduction ? path.resolve(__dirname, 'dist') : undefined,
       // publicPath: '/',
@@ -113,6 +146,44 @@ module.exports = env => {
             },
           ],
         },
+        {
+          test: /\.scss$/,
+          exclude: /\.module\.scss$/,
+          use: ['style-loader', CSSLoader, postCSSLoader, 'sass-loader']
+        },
+        {
+          test: /\.module\.scss$/,
+          use: [
+            'style-loader',
+            CSSModuleLoader,
+            postCSSLoader,
+            'sass-loader',
+          ],
+        },
+        {
+          test: /\.css$/,
+          use: [
+            'style-loader',
+            {
+              loader: 'postcss-loader',
+              options: {
+                ident: 'postcss',
+                plugins: () => [
+                  require('postcss-flexbugs-fixes'),
+                  autoprefixer({
+                    browsers: [
+                      '>1%',
+                      'last 4 versions',
+                      'Firefox ESR',
+                      'not ie < 9',
+                    ],
+                    flexbox: 'no-2009',
+                  })
+                ]
+              }
+            }
+          ]
+        }
         // {
         //   test: /\.(png|svg|jpg|gif)$/,
         //   exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
@@ -151,5 +222,8 @@ module.exports = env => {
       env.analyze ? new BundleAnalyzerPlugin() : () => {},
       isDevelopment ? new webpack.HotModuleReplacementPlugin() : () => {},
     ],
+    performance: {
+      hints: isProduction,
+    }
   }
 }
