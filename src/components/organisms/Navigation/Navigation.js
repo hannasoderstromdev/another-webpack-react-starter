@@ -4,11 +4,13 @@ import { connect } from 'react-redux'
 
 import Icon from 'components/atoms/Icon'
 
+import styles from './navigation.module.scss'
+
 const isActive = (path, match, location) =>
   !!(match || path === location.pathname)
 
 const Navigation = ({ loggedIn }) => (
-  <nav data-testid="main-navigation">
+  <nav className={styles.nav} data-testid="main-navigation">
     {loggedIn ? (
       <ul>
         <li>
