@@ -34,9 +34,15 @@ module.exports = {
     },
   ],
   styleguideComponents: {
-    Wrapper: path.join(__dirname, 'src/styleguide/Wrapper'),
+    Wrapper: path.join(__dirname, 'src/rsg-components/Wrapper'),
   },
   ignore: [
+    'src/components/hoc/**',
+    'src/components/templates/**',
+    'src/components/pages/**',
+    'src/components/App.js',
+    'src/components/Root.js',
+    'src/components/Routes.js',
     '**/__tests__/**',
     '**/*.test.{js,jsx,ts,tsx}',
     '**/*.spec.{js,jsx,ts,tsx}',
