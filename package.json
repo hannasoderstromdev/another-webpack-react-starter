@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --open --env.mode=development --color --progress",
-    "dev": "webpack --mode development --env.mode=development --color --progress",
+    "dev": "webpack-dev-server --open --env.mode=development --color --progress",
     "build": "webpack --mode production --env.mode=production",
     "build:analyze": "webpack --mode production --env.mode=production --env.analyze",
     "test": "jest --watch",
@@ -23,8 +22,8 @@
     "type": "git",
     "url": "git+https://github.com/gothbarbie/another-webpack-react-starter.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["starter", "react", "webpack", "babel", "redux", "jest"],
+  "author": "Hanna Söderström <contact@hannasoderstrom.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/gothbarbie/another-webpack-react-starter/issues"

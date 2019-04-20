@@ -64,7 +64,7 @@ This project uses Webpack 4 for building and development. The configuration file
 
 | Command         | Effect          |
 |-----------------|-----------------|
-| `npm run start` | Runs application in development-mode |
+| `npm run dev` | Runs application in development-mode |
 | `npm run build` | Builds application for production |
 | `npm run build:analyze` | Builds application with bundle analyzer |
 | `npm run test` | Runs test-runner in watch-mode |
