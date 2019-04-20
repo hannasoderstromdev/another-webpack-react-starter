@@ -8,7 +8,9 @@ There is no type checking, so you can choose if you want to use `PropTypes`, `Ty
 
 ## Folder-structure
 
-This setup uses Atomic Design-principles for folder structure.
+This setup uses Atomic Design-principles for folder structure. 
+
+You can read more about these here: http://bradfrost.com/blog/post/atomic-web-design/
 
 ## CSS
 
@@ -23,6 +25,18 @@ In production `autoprefixer` is used so no manually added browser-prefixes are r
 Every time you want to make a commit there is a check to make sure you don't commit code that has linting errors in them.
 
 You can change the rules for linting in `.eslintrc.js`.
+
+## Font Awesome
+
+We're using Font Awesome for icons. Via Babel these are individually imported to make the final build smaller so you don't have to name these imports as this: 
+```javascript
+import { faCog } from '@fortawesome/free-solid-svg-icons/faCog'
+``` 
+
+Leaving out the last `/faCog` will still only import the specifically used icons, thanks to Babel doing this for us. 
+
+(See `babel.config.js` for details.)
+
 
 ## Testing
 
