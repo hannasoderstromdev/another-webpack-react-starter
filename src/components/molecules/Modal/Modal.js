@@ -28,7 +28,7 @@ class Modal extends Component {
     switch (item.type) {
       case 'confirmation':
         return (
-          <div zIndex={(zIndex + 1) * 10}>
+          <div style={{ zIndex: (zIndex + 1) * 10 }}>
             <div>
               <div>{item.content.text}</div>
               <div>
