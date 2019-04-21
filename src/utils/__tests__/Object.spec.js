@@ -1,11 +1,11 @@
-import { isEmptyObject, removeObjectChildProperty } from '../Object'
+import ObjectUtils from '../Object'
 
 describe('Utils/Object', () => {
   describe('isEmptyObject', () => {
     it('returns true if Object is empty', () => {
       const myObject = {}
 
-      expect(isEmptyObject(myObject)).toEqual(true)
+      expect(ObjectUtils.isEmptyObject(myObject)).toEqual(true)
     })
 
     it('returns false if Object has props', () => {
@@ -13,7 +13,7 @@ describe('Utils/Object', () => {
         myProp: 'value',
       }
 
-      expect(isEmptyObject(myObject)).toEqual(false)
+      expect(ObjectUtils.isEmptyObject(myObject)).toEqual(false)
     })
   })
 
@@ -32,9 +32,9 @@ describe('Utils/Object', () => {
         thing: {},
         third: { toRemain: { thing: 'stuff' } },
       }
-      expect(removeObjectChildProperty(object, 'third', 'toBeDeleted')).toEqual(
-        expected,
-      )
+      expect(
+        ObjectUtils.removeObjectChildProperty(object, 'third', 'toBeDeleted'),
+      ).toEqual(expected)
     })
   })
 })
