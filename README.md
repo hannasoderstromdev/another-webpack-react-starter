@@ -81,4 +81,4 @@ This project uses Webpack 4 for building and development. The configuration file
 ## Author
 
 Hanna Söderström
-<contact@hannasoderstrom.com>
+<hanna.soderstrom84@gmail.com>
