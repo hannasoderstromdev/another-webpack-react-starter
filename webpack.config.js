@@ -4,7 +4,6 @@ const webpack = require('webpack')
 const TerserPlugin = require('terser-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin
-const autoprefixer = require('autoprefixer')
 
 module.exports = env => {
   const isDevelopment = env.mode === 'development'
@@ -13,11 +12,13 @@ module.exports = env => {
   const CSSModuleLoader = {
     loader: 'css-loader',
     options: {
-      modules: true,
+      modules: {
+        localIdentName: isProduction
+          ? '[hash:base64:5]'
+          : '[local]__[hash:base64:5]',
+
+      },
       sourceMap: true,
-      localIdentName: isProduction
-        ? '[hash:base64:5]'
-        : '[local]__[hash:base64:5]',
     },
   }
 
@@ -34,11 +35,6 @@ module.exports = env => {
     options: {
       ident: 'postcss',
       sourceMap: true,
-      plugins: () => [
-        autoprefixer({
-          browsers: ['>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9'],
-        }),
-      ],
     },
   }
 
@@ -164,18 +160,6 @@ module.exports = env => {
               loader: 'postcss-loader',
               options: {
                 ident: 'postcss',
-                plugins: () => [
-                  require('postcss-flexbugs-fixes'),
-                  autoprefixer({
-                    browsers: [
-                      '>1%',
-                      'last 4 versions',
-                      'Firefox ESR',
-                      'not ie < 9',
-                    ],
-                    flexbox: 'no-2009',
-                  }),
-                ],
               },
             },
           ],
