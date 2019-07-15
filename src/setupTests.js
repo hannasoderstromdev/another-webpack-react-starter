@@ -1,5 +1,5 @@
 // Adds additional expect-functions
-import 'jest-dom/extend-expect'
+import '@testing-library/jest-dom/extend-expect'
 
 // Cleans up DOM after each test automatically
 import '@testing-library/react/cleanup-after-each'

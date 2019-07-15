@@ -6,7 +6,7 @@ import Navigation from '..'
 
 describe('Components/Molecules/Navigation', () => {
   it('renders', () => {
-    const { getByText, getByTestId } = render(
+    const { getByText, getAllByTestId } = render(
       <Router>
         <Navigation />
       </Router>,
@@ -14,6 +14,6 @@ describe('Components/Molecules/Navigation', () => {
     expect(getByText('Home')).toBeDefined()
     expect(getByText('Private')).toBeDefined()
     expect(getByText('Settings')).toBeDefined()
-    expect(getByTestId('icon')).toBeDefined()
+    expect(getAllByTestId('icon')).toBeDefined()
   })
 })
