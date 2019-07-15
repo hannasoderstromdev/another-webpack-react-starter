@@ -40,7 +40,7 @@ Leaving out the last `/faCog` will still only import the specifically used icons
 
 ## Testing
 
-`Jest` along with `React-testing-library`. Configuration associated with Jest is found in `jest.config.js` and `src/setupTests.js`.
+`Jest` along with `@testing-library/react`. Configuration associated with Jest is found in `jest.config.js` and `src/setupTests.js`.
 
 ## Polyfills
 
