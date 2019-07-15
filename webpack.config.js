@@ -16,7 +16,6 @@ module.exports = env => {
         localIdentName: isProduction
           ? '[hash:base64:5]'
           : '[local]__[hash:base64:5]',
-
       },
       sourceMap: true,
     },
@@ -203,7 +202,7 @@ module.exports = env => {
       isDevelopment ? new webpack.HotModuleReplacementPlugin() : () => {},
     ],
     performance: {
-      hints: isProduction,
+      hints: isProduction ? false : 'error',
     },
   }
 }
